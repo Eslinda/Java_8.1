@@ -17,6 +17,17 @@ public class RadioTest {
     }
 
     @Test
+    void RandomRadioStation() {
+        Radio radio = new Radio(15);
+        radio.setStation(14);
+
+        int actual = radio.getStation();
+        int expected = 14;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void StationMore() {
         Radio radio = new Radio();
         radio.setStation(10);
@@ -55,6 +66,19 @@ public class RadioTest {
     void NextStationMax() {
         Radio radio = new Radio();
         radio.setStation(9);
+
+        radio.nextStation();
+
+        int actual = radio.getStation();
+        int expected = 0;
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void NextRandomStationMax() {
+        Radio radio = new Radio(15);
+        radio.setStation(14);
 
         radio.nextStation();
 
@@ -130,10 +154,10 @@ public class RadioTest {
     @Test
     void VolumeMax() {
         Radio radio = new Radio();
-        radio.setVolume(10);
+        radio.setVolume(100);
 
         int actual = radio.getVolume();
-        int expected = 10;
+        int expected = 100;
 
         assertEquals(expected, actual);
     }
@@ -152,7 +176,7 @@ public class RadioTest {
     @Test
     void VolumeMore() {
         Radio radio = new Radio();
-        radio.setVolume(11);
+        radio.setVolume(101);
 
         int actual = radio.getVolume();
         int expected = 0;
@@ -187,12 +211,12 @@ public class RadioTest {
     @Test
     void increaseVolumeMax() {
         Radio radio = new Radio();
-        radio.setVolume(10);
+        radio.setVolume(100);
 
         radio.increaseVolume();
 
         int actual = radio.getVolume();
-        int expected = 10;
+        int expected = 100;
 
         assertEquals(expected, actual);
     }
