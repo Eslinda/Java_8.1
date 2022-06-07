@@ -1,26 +1,26 @@
 package ru.netology.domain;
 
 import com.sun.source.tree.IfTree;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Radio {
 
 
     private int currentStation;
     private int currentVolume;
-
     private  int maxVolume = 100;
-
     private int maxStation = 9;
 
     public Radio (int maxStation){
         this.maxStation = maxStation - 1;
     }
 
-    public Radio (){
-
-    }
-
-    public void setStation(int newStation) {
+    public void setCurrentStation(int newStation) {
         if (newStation < 0) {
             return;
         }
@@ -30,61 +30,53 @@ public class Radio {
         this.currentStation = newStation;
     }
 
-    public int getStation() {
-        return currentStation;
-    }
-
     public void nextStation() {
         if (currentStation == maxStation) {
             currentStation = 0;
-            setStation(currentStation);
+            setCurrentStation(currentStation);
         } else {
             currentStation = currentStation + 1;
-            setStation(currentStation);
+            setCurrentStation(currentStation);
         }
     }
 
     public void previousStation() {
         if (currentStation == 0) {
             currentStation = maxStation;
-            setStation(currentStation);
+            setCurrentStation(currentStation);
         } else {
             currentStation = currentStation - 1;
-            setStation(currentStation);
+            setCurrentStation(currentStation);
         }
     }
 
-    public void setVolume(int newVolume) {
+    public void setCurrentVolume(int newVolume) {
         if (newVolume < 0) {
             return;
         }
         if (newVolume > maxVolume) {
-            return;
+            return ;
         }
         this.currentVolume = newVolume;
-    }
-
-    public int getVolume() {
-        return currentVolume;
     }
 
     public void increaseVolume() {
         if (currentVolume == maxVolume) {
             currentVolume = maxVolume;
-            setVolume(currentVolume);
+            setCurrentVolume(currentVolume);
         } else {
             currentVolume = currentVolume + 1;
-            setVolume(currentVolume);
+            setCurrentVolume(currentVolume);
         }
     }
 
     public void decreaseVolume() {
         if (currentVolume == 0) {
             currentVolume = 0;
-            setVolume(currentVolume);
+            setCurrentVolume(currentVolume);
         } else {
             currentVolume = currentVolume - 1;
-            setVolume(currentVolume);
+            setCurrentVolume(currentVolume);
         }
     }
 }
